@@ -1,0 +1,4 @@
+body {
+    background-color: transparent; /* Allows the portfolio card color to show through */
+    color: inherit; /* Tries to take the text color from the parent card */
+}
