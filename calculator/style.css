@@ -1,0 +1,73 @@
+/* basic reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.calculator {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+    width: 320px;
+}
+
+.display {
+    background-color: #222;
+    color: #fff;
+    font-size: 2.5rem;
+    text-align: right;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 10px;
+}
+
+button {
+    padding: 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #eee;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+.operator {
+    background-color: #f39c12;
+    color: white;
+}
+
+.operator:hover {
+    background-color: #e67e22;
+}
+
+.equal {
+    background-color: #27ae60;
+    color: white;
+    /* Optional: make it span two rows if you move it to the end */
+}
+
+.zero {
+    grid-column: span 2; /* Makes the 0 button wider */
+}
