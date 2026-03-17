@@ -1,7 +1,21 @@
 :root {
+    /* Light Mode (Default) */
     --bg: #ffffff;
+    --header-bg: #f4f4f4;
     --text: #333;
     --accent: #007bff;
+    --card-border: #ddd;
+    --nav-shadow: rgba(0,0,0,0.1);
+}
+
+/* Dark Mode Colors */
+[data-theme="dark"] {
+    --bg: #1a1a1a;
+    --header-bg: #2d2d2d;
+    --text: #f4f4f4;
+    --accent: #3793ff;
+    --card-border: #444;
+    --nav-shadow: rgba(0,0,0,0.5);
 }
 
 body {
@@ -9,21 +23,27 @@ body {
     line-height: 1.6;
     margin: 0;
     color: var(--text);
+    background-color: var(--bg); /* Uses variable */
     scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     padding: 1rem 5%;
-    background: var(--bg);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: var(--bg); /* Uses variable */
+    box-shadow: 0 2px 5px var(--nav-shadow); /* Uses variable */
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-nav ul { display: flex; list-style: none; }
+nav ul { 
+    display: flex; 
+    list-style: none; 
+    align-items: center; /* Centers the button with links */
+}
 nav ul li { margin-left: 20px; }
 nav a { text-decoration: none; color: var(--text); font-weight: bold; }
 
@@ -34,7 +54,7 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: #f4f4f4;
+    background: var(--header-bg); /* Uses variable */
 }
 
 .highlight { color: var(--accent); }
@@ -47,26 +67,24 @@ header {
 }
 
 .card {
-    border: 1px solid #ddd;
+    border: 1px solid var(--card-border); /* Uses variable */
     padding: 20px;
     border-radius: 8px;
     transition: transform 0.3s ease;
-    background: white;
+    background: var(--bg); /* Uses variable */
 }
 
 .card:hover { transform: translateY(-5px); }
 
-/* --- NEW ADDITIONS START HERE --- */
-
+/* Project Preview logic */
 .project-preview {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 100%;
-    /* This creates a taller box (3:4 ratio) perfect for calculators/to-do lists */
     aspect-ratio: 3 / 4; 
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #ddd;
+    border: 1px solid var(--card-border);
 }
 
 .project-preview iframe {
@@ -76,7 +94,22 @@ header {
     display: block;
 }
 
-/* --- NEW ADDITIONS END HERE --- */
+/* Theme Toggle Button Style */
+#theme-toggle {
+    cursor: pointer;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+#theme-toggle:active {
+    transform: scale(0.95);
+}
 
 footer {
     text-align: center;

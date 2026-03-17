@@ -13,6 +13,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><button id="theme-toggle">Dark Mode</button></li>
         </ul>
     </nav>
 
@@ -47,7 +48,9 @@
                     <a href="https://github.com/AKPoFo" target="_blank">View Code</a>
                     <a href="todo/index.html" target="_blank" style="margin-left: 10px;">Live Demo</a>
                 </div>
-            </div> </div>
+            </div> 
+
+        </div>
     </section>
 
     <footer id="contact">
@@ -57,5 +60,30 @@
             <a href="https://github.com/AKPoFo">GitHub</a>
         </div>
     </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme');
+
+        // Check if user has a saved preference
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            toggleBtn.textContent = 'Light Mode';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.textContent = 'Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.textContent = 'Light Mode';
+            }
+        });
+    </script>
 </body>
 </html>
