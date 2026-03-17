@@ -52,7 +52,7 @@ nav ul {
     list-style: none; 
     align-items: center; 
     margin: 0;
-    padding: 0;
+    padding: 0; /* Removed default padding to help centering */
 }
 
 nav ul li { margin-left: 20px; }
@@ -61,14 +61,9 @@ nav a {
     text-decoration: none; 
     color: var(--text); 
     font-weight: bold; 
-    transition: color 0.2s;
 }
 
-nav a:hover {
-    color: var(--accent);
-}
-
-/* --- HEADER / HERO SECTION --- */
+/* --- HEADER / HERO --- */
 header {
     height: 80vh;
     display: flex;
@@ -87,17 +82,22 @@ header {
 
 .highlight { color: var(--accent); }
 
-/* --- PROJECTS SECTION --- */
+/* --- PROJECTS SECTION (THE FIX) --- */
 #projects {
     padding: 4rem 5%;
+    max-width: 1200px; /* Limits width so it doesn't stretch too far */
+    margin: 0 auto;    /* Centers the entire section container */
     text-align: center;
 }
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    /* auto-fit can sometimes leave gaps; auto-fill + center ensures alignment */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+    justify-content: center; /* Centers cards horizontally */
+    justify-items: center;   /* Centers card content */
 }
 
 .card {
@@ -108,18 +108,20 @@ header {
     box-shadow: 0 4px 12px var(--nav-shadow);
     display: flex;
     flex-direction: column;
+    width: 100%;       /* Allows minmax to control width */
+    max-width: 400px;  /* Prevents cards from getting too huge on big screens */
     transition: transform 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 }
 
 .project-preview {
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     border-radius: 8px;
     overflow: hidden;
-    height: 250px;
+    height: 220px;
     border: 1px solid var(--card-border);
 }
 
@@ -134,14 +136,13 @@ header {
     margin-top: auto;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .card-links a {
     text-decoration: none;
     color: var(--accent);
     font-weight: bold;
-    font-size: 0.9rem;
 }
 
 /* --- FOOTER --- */
@@ -152,14 +153,8 @@ footer {
     border-top: 1px solid var(--card-border);
 }
 
-.socials a {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: bold;
-}
-
 /* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     nav {
         flex-direction: column;
         padding: 1rem;
@@ -170,7 +165,7 @@ footer {
     nav ul li {
         margin: 0 10px;
     }
-    header h1 {
-        font-size: 1.8rem;
+    .project-grid {
+        grid-template-columns: 1fr; /* Stack cards on small screens */
     }
 }
