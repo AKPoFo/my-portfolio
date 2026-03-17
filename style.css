@@ -23,30 +23,49 @@ body {
     line-height: 1.6;
     margin: 0;
     color: var(--text);
-    background-color: var(--bg); /* Uses variable */
+    background-color: var(--bg);
     scroll-behavior: smooth;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     padding: 1rem 5%;
-    background: var(--bg); /* Uses variable */
-    box-shadow: 0 2px 5px var(--nav-shadow); /* Uses variable */
+    
+    /* Changed to slightly transparent for the glass effect */
+    background: rgba(255, 255, 255, 0.85); 
+    
+    box-shadow: 0 2px 5px var(--nav-shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
+    
+    /* Glass Effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Make sure the nav glass effect works in Dark Mode too */
+[data-theme="dark"] nav {
+    background: rgba(26, 26, 26, 0.85);
 }
 
 nav ul { 
     display: flex; 
     list-style: none; 
-    align-items: center; /* Centers the button with links */
+    align-items: center; 
 }
-nav ul li { margin-left: 20px; }
-nav a { text-decoration: none; color: var(--text); font-weight: bold; }
 
+nav ul li { margin-left: 20px; }
+
+nav a { 
+    text-decoration: none; 
+    color: var(--text); 
+    font-weight: bold; 
+}
+
+/* --- UPDATED HEADER WITH BACKGROUND IMAGE --- */
 header {
     height: 80vh;
     display: flex;
@@ -54,66 +73,19 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: var(--header-bg); /* Uses variable */
+    
+    /* Background image with a dark overlay */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb-UhqqQDP6rpdG9LYTZiZ-2-FnOEreAlNQw&s');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    /* Forces white text over the dark image overlay */
+    color: #ffffff; 
 }
 
+/* Keep standard highlight for the rest of the page */
 .highlight { color: var(--accent); }
 
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 2rem 5%;
-}
-
-.card {
-    border: 1px solid var(--card-border); /* Uses variable */
-    padding: 20px;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    background: var(--bg); /* Uses variable */
-}
-
-.card:hover { transform: translateY(-5px); }
-
-/* Project Preview logic */
-.project-preview {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    width: 100%;
-    aspect-ratio: 3 / 4; 
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--card-border);
-}
-
-.project-preview iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-}
-
-/* Theme Toggle Button Style */
-#theme-toggle {
-    cursor: pointer;
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    transition: transform 0.2s ease;
-}
-
-#theme-toggle:active {
-    transform: scale(0.95);
-}
-
-footer {
-    text-align: center;
-    padding: 4rem 1rem;
-    background: #222;
-    color: white;
-}
+/*
